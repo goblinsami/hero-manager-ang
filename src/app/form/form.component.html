@@ -1,0 +1,16 @@
+<h1>{{formAction}}</h1>
+<form>
+  <mat-form-field>
+    <mat-label>Nombre</mat-label>
+    <input [disabled]="isShowForm" matInput name="heroName" required [(ngModel)]="formData.name">
+  </mat-form-field>
+  <p></p>
+  <mat-form-field>
+    <mat-label>Edad</mat-label>
+    <input [disabled]="isShowForm" name="heroAge" type="number" matInput [(ngModel)]="formData.age">
+  </mat-form-field>
+
+</form>
+<button class="btn-group" routerLink="/" mat-raised-button>Cancelar</button>
+<button class="btn-group" *ngIf="formAction === 'Crear'" (click)="createHeroe()" mat-raised-button>Crear</button>
+<button class="btn-group" *ngIf="formAction === 'Editar'" (click)="editHeroe()" mat-raised-button>Editar</button>

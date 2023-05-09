@@ -1,0 +1,34 @@
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <h1>Mantenimiento de heroes</h1>
+  <form class="filter-form ">
+    <mat-form-field>
+      <mat-label>Filtra por nombre</mat-label>
+      <input matInput name="filterName" type="text" [(ngModel)]="filterName">
+      <button mat-icon-button matSuffix (click)="filterHeroes()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+  <div class="btn-group">
+    <button  mat-raised-button routerLink="/create" (click)="createHeroe()">Crear</button>
+    <button mat-raised-button [routerLink]="['show', selected?.[0].id]" [disabled]="!selected?.length">Mostrar</button>
+    <button  mat-raised-button [routerLink]="['edit', selected?.[0].id]" [disabled]="!selected?.length">Editar</button>
+      <button mat-raised-button (click)="deleteHero(selected?.[0].id)" [disabled]="!selected?.length">Eliminar</button>
+
+  </div>
+  <div class="spinner">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+  <mat-selection-list [(ngModel)]="selected" class="heroesList" #heroesList [multiple]="false">
+    <mat-list-option *ngFor="let hero of filteredHeroes | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize"
+      [value]="hero">
+      {{ hero.name }}
+    </mat-list-option>
+  </mat-selection-list>
+  <mat-paginator [pageSize]="pageSize" [pageIndex]="pageIndex" [length]="heroes.length"
+    (page)="onPageChange($event)"></mat-paginator>
+
+</div>
+<button>
+  toggle
+</button>
