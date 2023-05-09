@@ -9,17 +9,16 @@
       </button>
     </mat-form-field>
   </form>
-  <div class="btn-group">
-    <button  mat-raised-button routerLink="/create" (click)="createHeroe()">Crear</button>
-    <button mat-raised-button [routerLink]="['show', selected?.[0].id]" [disabled]="!selected?.length">Mostrar</button>
-    <button  mat-raised-button [routerLink]="['edit', selected?.[0].id]" [disabled]="!selected?.length">Editar</button>
-      <button mat-raised-button (click)="deleteHero(selected?.[0].id)" [disabled]="!selected?.length">Eliminar</button>
-
+  <div class="x-sm-padding">
+    <button mat-raised-button routerLink="/create" (click)="createHero()">Crear</button>
+    <button mat-raised-button [routerLink]="['show', selected?.[0]?.id]" [disabled]="!selected?.length">Mostrar</button>
+    <button mat-raised-button [routerLink]="['edit', selected?.[0]?.id]" [disabled]="!selected?.length">Editar</button>
+    <button mat-raised-button (click)="deleteHero(selected?.[0]?.id ?? -1)" [disabled]="!selected?.length">Eliminar</button>
   </div>
-  <div class="spinner">
+  <div class="sm-padding" *ngIf="loading">
     <mat-spinner color="accent"></mat-spinner>
   </div>
-  <mat-selection-list [(ngModel)]="selected" class="heroesList" #heroesList [multiple]="false">
+  <mat-selection-list *ngIf="!loading" [(ngModel)]="selected" class="heroesList" #heroesList [multiple]="false">
     <mat-list-option *ngFor="let hero of filteredHeroes | slice: pageIndex * pageSize : (pageIndex + 1) * pageSize"
       [value]="hero">
       {{ hero.name }}
@@ -27,8 +26,4 @@
   </mat-selection-list>
   <mat-paginator [pageSize]="pageSize" [pageIndex]="pageIndex" [length]="heroes.length"
     (page)="onPageChange($event)"></mat-paginator>
-
 </div>
-<button>
-  toggle
-</button>

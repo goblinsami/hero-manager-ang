@@ -10,7 +10,6 @@ main
   border-radius: 2px
   padding: 1rem
 
-
 .heroesList
   width: 350px
 
@@ -20,16 +19,29 @@ main
 body
   background-color: rgba(221, 221, 221, 0.5)
 
-.btn-group
+.x-sm-padding
   padding: 0 1rem
 
 .search-btn
   margin-bottom: 20px
 
-.spinner
+.sm-padding
   padding: 1rem
 
+.success-snackbar
+  color: white
+  --mdc-snackbar-container-color: green
+  .mat-simple-snackbar-action
+    color: white
+  .mdc-button__label
+    color: white
 
-/* .filter-form
-  display: flex
- */
+.error-snackbar
+  color: rgb(0, 0, 0)
+  --mdc-snackbar-container-color: rgba(255, 0, 0.5)
+  .mat-mdc-snack-bar-label .mdc-snackbar__label
+    color: rgb(255, 208, 0)
+  .mat-simple-snackbar-action
+    color: rgb(255, 208, 0)
+  .mdc-button__label
+    color: rgb(255, 208, 0)
