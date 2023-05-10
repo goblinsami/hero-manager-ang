@@ -11,9 +11,9 @@
   </form>
   <div class="x-sm-padding">
     <button mat-raised-button routerLink="/create" (click)="createHero()">Crear</button>
-    <button mat-raised-button [routerLink]="['show', selected?.[0]?.id]" [disabled]="!selected?.length">Mostrar</button>
-    <button mat-raised-button [routerLink]="['edit', selected?.[0]?.id]" [disabled]="!selected?.length">Editar</button>
-    <button mat-raised-button (click)="deleteHero(selected?.[0]?.id ?? -1)" [disabled]="!selected?.length">Eliminar</button>
+    <button mat-raised-button [routerLink]="['show', selectedHeroId()]" [disabled]="emptySelection()">Mostrar</button>
+    <button mat-raised-button [routerLink]="['edit', selectedHeroId()]" [disabled]="emptySelection()">Editar</button>
+    <button mat-raised-button (click)="deleteHero(selectedHeroId())" [disabled]="emptySelection()">Eliminar</button>
   </div>
   <div class="sm-padding" *ngIf="loading">
     <mat-spinner color="accent"></mat-spinner>

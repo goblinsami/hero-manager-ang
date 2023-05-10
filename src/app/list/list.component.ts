@@ -17,6 +17,8 @@ export class ListComponent {
   selected: Hero[] = [];
   pageSize = 5;
   pageIndex = 0;
+  selectedHero: Hero | undefined;
+
 
   get loading(): boolean {
     return this.heroesService.loading;
@@ -25,12 +27,27 @@ export class ListComponent {
     return this.heroesService.heroes;
   }
 
+
   onPageChange(event: any) {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
   }
   createHero() {
     this.router.navigate(['/create']);
+  }
+
+  selectedHeroId() {
+    let result
+    if (this.selected.length === 0) {
+      result = -1
+    } else {
+      result = this.selected[0].id
+    }
+    return result
+  }
+
+  emptySelection() {
+    return this.selected.length === 0
   }
 
   deleteHero(id: number) {
